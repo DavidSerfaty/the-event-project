@@ -29,18 +29,11 @@
         <ul class="navbar-nav ml-auto">
 
           <% if user_signed_in? %>
-            <div class="dropdown">
-              <li class="dropdown-toggle nav-item nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-no-turbolink= "true">
-                Hello <%= current_user.first_name %>
-              </li>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><%= link_to "Profil", user_path(current_user), class: "dropdown-item" %></li>
-                <li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-              </div>
-            </div>
+            <li class="nav-item"><%= link_to "Profil", user_path(current_user), class: "nav-link"  %></li>
+            <li class="nav-item"><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "nav-link"  %></li>
           <% else %>
-            <li><%= link_to "Se connecter", new_user_session_path %></li>
-            <li><%= link_to "S'insrire'", new_user_registration_path %></li>
+            <li class="nav-item"><%= link_to "Connexion", new_user_session_path, class: "nav-link"  %></li>
+            <li class="nav-item"><%= link_to "Inscription", new_user_registration_path, class: "nav-link"  %></li>
           <% end %>
         </ul>
       </div>

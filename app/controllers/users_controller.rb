@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+  before_action :its_me, only: [:show, :edit, :update, :destroy]
 
 
   def show
@@ -41,5 +43,12 @@ end
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:email, :encrypted_password, :first_name, :last_name, :description)
+    end
+
+    def its_me
+      @user = User.find(params[:id])
+      unless current_user == @user
+        redirect_to root_path
+      end
     end
 end

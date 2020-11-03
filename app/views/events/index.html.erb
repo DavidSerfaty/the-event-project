@@ -1,37 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>Duration</th>
-      <th>Price</th>
-      <th>Location</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Eventbrite!</h1>
+    <p>Tous les supers événements à ne pas manquer</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+  </div>
+</div>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <h1>Nos événements</h1>
+    <div class="row">
     <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.start_date %></td>
-        <td><%= event.duration %></td>
-        <td><%= event.price %></td>
-        <td><%= event.location %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <!-- <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap"> -->
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted"><%= event.start_date %></h6>
+            <h5 class="card-title"><%= event.title %></h5>
+            <p class="card-text"><%= event.title %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <%= link_to 'Voir', event, class: "btn btn-sm btn-outline-secondary" %>
+              
+              </div>
+              <small class="text-muted"><%= event.price %>€</small>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
-
-<%= link_to 'New Event', new_event_path %>
+  </div>
+</div>

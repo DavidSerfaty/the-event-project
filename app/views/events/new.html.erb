@@ -1,5 +1,16 @@
-<h1>New Event</h1>
-
-<%= render 'form', event: @event %>
-
-<%= link_to 'Back', events_path %>
+<div class="container">
+  <h1 class="text-center my-5"> Nouvel Evenement</h1>
+  <div class="col-12">
+    <div class="shadow-none bg-light rounded p-4">
+      <%= form_tag url_for(action: 'create'), method: "post" do %>
+      <%= text_field_tag 'title', @event.title, class: "form-control", placeholder: "Titre" %><br>
+      <%= text_area_tag 'description', @event.description, class: "form-control", placeholder: "description"%><br>
+      <%= datetime_field_tag 'start_date', @event.start_date, class: "form-control", placeholder: "start_date"%><br>
+      <%= text_area_tag 'duration', @event.duration, class: "form-control", placeholder: "duration"%><br>
+      <%= text_area_tag 'price', @event.price, class: "form-control", placeholder: "price"%><br>
+      <%= text_area_tag 'location', @event.location, class: "form-control", placeholder: "location"%><br>
+      <%= submit_tag "Nouvel Event",  class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

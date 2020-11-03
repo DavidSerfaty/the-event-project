@@ -19,4 +19,8 @@ class Event < ApplicationRecord
   def is_future?
     start_date.future?
   end
+
+  def end_date
+      start_date + duration
+  end
 end
