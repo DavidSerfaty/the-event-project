@@ -2,7 +2,6 @@
 
 <div class="container">
   <div class="card mb-3">
-    <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"><%= @event.title %></h5>
       <p class="card-text"><%= @event.description %></p>
@@ -14,7 +13,7 @@
       <li class="list-group-item">Prix : <%= @event.price %>€</li>
       <li class="list-group-item">Durée : <%= @event.duration %> min</li>
       <li class="list-group-item">Lieu : <%= @event.location %></li>
-      <li class="list-group-item">Fin prévue : <%= @event.end_date%> </li>
+      <li class="list-group-item">Fin prévue : <%= @event.end_date.strftime("%A %e %B %Y à %kh%M") %> </li>
       <li class="list-group-item">Nombre de participants : <%= @event.attendances.count%> </li>
     </ul>
   </div>

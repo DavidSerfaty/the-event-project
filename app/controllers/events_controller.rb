@@ -17,9 +17,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(title: params[:title], description: params[:description], start_date: params[:start_date],
       duration: params[:duration], price: params[:price], location: params[:location], owner_id: current_user.id)
-
     if @event.save
-      redirect_to @event, notice: "Gossip créé avec succès"
+      redirect_to event_path(@event.id), notice: "Gossip créé avec succès"
     else
       render :new
     end
