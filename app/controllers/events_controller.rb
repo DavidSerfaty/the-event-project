@@ -3,11 +3,9 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :is_my_event, only: [:edit, :update, :destroy]
 
-
   def index
     @events = Event.all
   end
-
 
   def show
   end
@@ -27,9 +25,9 @@ class EventsController < ApplicationController
     end
   end
 
-    def edit
-      @event = Event.find(params[:id])
-    end
+  def edit
+    @event = Event.find(params[:id])
+  end
 
   def update
     @event = Event.find(params[:id])
@@ -49,20 +47,19 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    def event_params
-      params.require(:event).permit(:title, :description, :start_date, :duration, :price, :location)
-    end
+  def event_params
+    params.require(:event).permit(:title, :description, :start_date, :duration, :price, :location)
+  end
 
-    def is_my_event
-      @event = Event.find(params[:id])
-      unless current_user == @event.owner
-        redirect_to root_path
-      end
+  def is_my_event
+    @event = Event.find(params[:id])
+    unless current_user == @event.owner
+      redirect_to root_path
     end
+  end
 
 end
