@@ -121,6 +121,8 @@ Rails.application.configure do
       enable_starttls_auto: true
     }
 
-    config.action_mailer.default_url_options = { :host => 'the-event-project.herokuapp.com' } # bien mettre le bon nom de domaine
+    config.action_mailer.perform_deliveries = true
+
+    config.action_mailer.default_url_options = { host: 'https://the-event-project.herokuapp.com/' } # bien mettre le bon nom de domaine
 
 end
