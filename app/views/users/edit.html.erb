@@ -4,10 +4,10 @@
   <div class="col-12">
     <div class="shadow-none bg-light rounded p-4">
       <%= form_for @user, url: {action: "update"} do |f| %>
-      <%= f.email_field :email, class: "form-control", placeholder: "Titre" %><br>
-      <%= f.text_field :first_name, class: "form-control", placeholder: "start_date"%><br>
-      <%= f.text_field :last_name, class: "form-control", placeholder: "start_date"%><br>
-      <%= f.text_area :description, class: "form-control", placeholder: "description"%><br>
+      <%= f.email_field :email, class: "form-control", placeholder: "Email" %><br>
+      <%= f.text_field :first_name, class: "form-control", placeholder: "Prénom"%><br>
+      <%= f.text_field :last_name, class: "form-control", placeholder: "Nom"%><br>
+      <%= f.text_area :description, class: "form-control", placeholder: "Description"%><br>
       <%= submit_tag "Enregistrer profil",  class: "btn btn-primary" %>
       <% end %>
     </div>

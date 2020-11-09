@@ -1,8 +1,12 @@
+
 <p id="notice"><%= notice %></p>
 
 <div class="container">
   <div class="card mb-3">
     <div class="card-body">
+      <%if @event.cover.attached?%>
+        <%= image_tag @event.cover, alt: 'event-cover' %>
+      <%end%>
       <h5 class="card-title"><%= @event.title %></h5>
       <p class="card-text"><%= @event.description %></p>
       <p class="card-text"><small class="text-muted">Par <%= @event.owner.first_name %><br>
@@ -18,5 +22,40 @@
     </ul>
   </div>
 
+  <% if current_user.present? %>
+    <% if @event.owner == current_user %>
+      <%= link_to "Administrateur de l'évenement", event_attendances_path(@event.id), method: :post, class:"btn btn-secondary" %>
+    <% elsif @event.guests.include? current_user %>
+      <%= link_to "Vous participez à l'évenement", event_attendances_path(@event.id), method: :post, class:"btn btn-secondary" %>
+    <% else %>
+      <%= link_to "Rejoindre l'événement", event_attendances_path(@event.id), method: :post, class:"btn btn-success" %>
+    <% end %>
+  <% else %>
+    <%= link_to "Participer à l'événement", event_attendances_path(@event.id), method: :post, class:"btn btn-success", id: "checkout-button" %>
+  <%end %>
+
   <%= link_to 'Retourner aux événements', events_path %>
-</div>
+  <br>
+  <% if current_user.present? && @event.owner == current_user %>
+    <h2>Liste des participants</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <% @event.guests.each do |guest| %>
+        <tbody>
+          <tr>
+            <td><%= guest.last_name %></td>
+            <td><%= guest.first_name %></td>
+            <td><%= guest.email %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  <% end %>

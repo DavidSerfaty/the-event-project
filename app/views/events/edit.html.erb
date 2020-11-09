@@ -2,6 +2,10 @@
 <div class="container">
   <h1 class="text-center my-5"> Modifier l'événement</h1>
   <div class="col-12">
+    <%= form_tag event_covers_path(@event.id), multipart: true do %>
+    <%= file_field_tag :cover %>
+    <%= submit_tag "charger" %>
+    <% end %>
     <div class="shadow-none bg-light rounded p-4">
       <%= form_for @event, url: {action: "update"} do |f| %>
       <%= f.text_field :title, class: "form-control", placeholder: "Titre" %><br>
