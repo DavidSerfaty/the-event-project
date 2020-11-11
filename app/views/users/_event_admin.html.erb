@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2">
+  <h2>Événements Admin</h1>
+</div>
+<div class="table-responsive mb-5">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Date</th>
+        <th>Titre</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <% @user.events.each do |event| %>
+    <tbody>
+      <tr>
+        <td><%= event.start_date.strftime("%d/%m/%Y") %></td>
+        <td><%= event.title %></td>
+          <td><span class="badge <%=bootstrap_class_for_status(event.status)%>"><%= event.status %></span></td>
+        <td>
+          <%= link_to 'Voir', event, class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to 'Modifier', edit_event_path(event), class: "btn btn-sm btn-outline-warning" %>
+          <%= link_to 'Supprimer', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

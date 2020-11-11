@@ -1,0 +1,24 @@
+  <div class="row">
+    <div class="col-md-5">
+      <%if @event.cover.attached?%>
+        <%= image_tag @event.cover, alt: 'event-cover', class:"img-thumbnail rounded" %>
+      <%end%>
+    </div>
+    <div class="col-md-7">
+      <div class="card-body">
+        <h5 class="card-title"><%= @event.title %></h5>
+        <p class="card-text"><%= @event.description %></p>
+        <p class="card-text"><small class="text-muted">Par <%= @event.owner.first_name %><br>
+        Contact : <%= @event.owner.email %></small></p>
+      </div>
+      <hr>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Date de début : <%= @event.start_date.strftime("%A %e %B %Y à %kh%M") %></li>
+        <li class="list-group-item">Prix : <%= @event.price %>€</li>
+        <li class="list-group-item">Durée : <%= @event.duration %> min</li>
+        <li class="list-group-item">Lieu : <%= @event.location %></li>
+        <li class="list-group-item">Fin prévue : <%= @event.end_date.strftime("%A %e %B %Y à %kh%M") %> </li>
+        <li class="list-group-item">Nombre de participants : <%= @event.attendances.count%> </li>
+      </ul>
+    </div>
+  </div>

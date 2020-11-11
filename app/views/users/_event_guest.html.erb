@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2">
+  <h2>Événements auxquels je participe</h1>
+</div>
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Date</th>
+        <th>Titre</th>
+        <th>Prix</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <% @user.attended_events.each do |event| %>
+    <tbody>
+      <tr>
+        <td><%= event.start_date.strftime("%d/%m/%Y") %></td>
+        <td><%= event.title %></td>
+        <td><%= event.price %> €</td>
+        <td>
+          <%= link_to 'Voir', event, class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to 'Ne plus participer', event_attendance_path(event.id, current_user.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
